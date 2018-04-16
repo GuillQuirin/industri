@@ -1,0 +1,30 @@
+language: php
+
+branches:
+  only:
+    - master
+    - dev
+
+# list any PHP version you want to test against
+php:
+  - '7.0'
+  - '7.1'
+
+#before_script:
+#  - composer self-update
+#  - composer install --prefer-source --no-interaction --dev
+
+#install:
+  #- composer install
+  #- composer global require "squizlabs/php_codesniffer $PHPCS_VER"
+  #- composer global require "sensiolabs/security-checker"
+
+script:
+  - docker run --rm -v $PWD:/app phpqa/security-checker security:check
+  - docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix --dry-run ./
+
+notifications:
+  on_success: never
+  on_failure: always
+  email:  gui.quirin@hotmail.fr
+
