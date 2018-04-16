@@ -1,29 +1,23 @@
 language: php
-
 branches:
   only:
-    - master
-    - dev
-
-# list any PHP version you want to test against
+  - master
+  - dev
 php:
-  - '7.0'
-  - '7.1'
-
+- '7.0'
+- '7.1'
 before_script:
-  - composer self-update
-
+- composer self-update
 install:
-  - composer global require "squizlabs/php_codesniffer $PHPCS_VER"
-  - composer global require "sensiolabs/security-checker"
-  - composer install
-
+- composer global require "squizlabs/php_codesniffer $PHPCS_VER"
+- composer global require "sensiolabs/security-checker"
+- composer install
 script:
-  - docker run --rm -v $PWD:/app phpqa/security-checker security:check
-  #- docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix --dry-run ./
-
+- docker run --rm -v $PWD:/app phpqa/security-checker security:check
 notifications:
   on_success: never
   on_failure: always
-  email:  gui.quirin@hotmail.fr
-
+  email: gui.quirin@hotmail.fr
+deploy:
+  api_key:
+    secure: dNIIZHuh/72xnLoMulxdtFcsOvkTS0GqXg0cRmigwgoQBimLcdUJPYp1pjbFeLOlTzeTs5IK59Gtad1PN1hRuvKMwTJtA9XMGissZkwGjjloh5nrHZrIUsR3SbTtSHbKwgxDGQUD7uI+bTCql+4t96XLlOSs/Zjeziafl3cxBuPzMK83smOuI1ydPrgrUYx8DUZSyUSyMQigZOULnhGJA2a4f2uU9fyFcfMKQaVkVSt1VZsC7t++lS0Pn0JEL5Bm2F920xCIrHKY6DsS/tU8LB3yPDoSA6z/TXKBmtgEFidJdD9ZbYHRH1mOqxhddiOg66wObyBjGLMM3UtMg/3HBkO6idctUB9K+6T8/BlcyLUYayBrhLe66fbb2BTnqScRZyqlYify/f8lyBQTaUHCabRdjAWGWruXcS9inqp/BCQoV0z7m0IV4WHEwUNkv/kp3QfmYF3wRRVx62NuCPdOr7Gu/XpuG0Sujl/xTVJ1Y/QCTNYJHdO+02O84GUV7R7ox11iydOGHIW34QRyr2F62dLCJKOtXjY1FEWMRtjmkvytTVxn6b7GehdY4OQi7NPpGg0p/quFb7fbbRGkUKy15o5P+iYIaE7R0gQO6cqPxzQquXATD+Q8oBDJXd0FVLFx2duqqYgoYyflePMZ49mENPF4EWjCapszYInsx+WKl3s=
