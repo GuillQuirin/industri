@@ -17,10 +17,10 @@ install:
   - composer global require "squizlabs/php_codesniffer $PHPCS_VER"
   - composer global require "sensiolabs/security-checker"
   - composer install
-  
+
 script:
   - docker run --rm -v $PWD:/app phpqa/security-checker security:check
-  - docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix --dry-run ./
+  #- docker run --rm -v $PWD:/app phpqa/php-cs-fixer fix --dry-run ./
 
 notifications:
   on_success: never
