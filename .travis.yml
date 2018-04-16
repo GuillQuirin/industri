@@ -10,14 +10,14 @@ php:
   - '7.0'
   - '7.1'
 
-#before_script:
-#  - composer self-update
-#  - composer install --prefer-source --no-interaction --dev
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
 
-#install:
-  #- composer install
-  #- composer global require "squizlabs/php_codesniffer $PHPCS_VER"
-  #- composer global require "sensiolabs/security-checker"
+install:
+  - composer install
+  - composer global require "squizlabs/php_codesniffer $PHPCS_VER"
+  - composer global require "sensiolabs/security-checker"
 
 script:
   - docker run --rm -v $PWD:/app phpqa/security-checker security:check
